@@ -27,6 +27,10 @@
 # IDE
 .idea/
 
+# personal documents (contain private contact info — never commit)
+/Profile.pdf
+*.resume.pdf
+
 # debug
 npm-debug.log*
 yarn-debug.log*

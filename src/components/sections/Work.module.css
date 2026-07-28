@@ -1,0 +1,129 @@
+.section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 6rem 1.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.inner {
+  max-width: 44rem;
+  width: 100%;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-blue-glow);
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.heading {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.companyHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.companyName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-fg);
+}
+
+.companyDuration {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-fg-faint);
+  white-space: nowrap;
+}
+
+.roles {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-left: 1.75rem;
+  border-left: 1px solid var(--glass-border);
+}
+
+.role {
+  position: relative;
+}
+
+.role::before {
+  content: "";
+  position: absolute;
+  top: 0.4rem;
+  left: calc(-1.75rem - 3px);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-ember);
+  box-shadow: 0 0 0 4px var(--color-bg);
+}
+
+.roleHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.9rem;
+}
+
+.roleTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-fg);
+}
+
+.rolePeriod,
+.roleLocation {
+  font-size: 0.82rem;
+  color: var(--color-fg-faint);
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  list-style: none;
+}
+
+.bullet {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-fg-dim);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.bullet::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--color-ember-soft);
+}
