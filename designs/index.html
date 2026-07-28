@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harshat Munnangi — Full Stack Developer</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="header" id="header">
+    <div class="header-inner">
+      <button type="button" class="logo" id="logo" aria-label="Scroll to top">HM</button>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#home" class="nav-link" data-target="home">Home</a>
+        <a href="#about" class="nav-link" data-target="about">About</a>
+        <a href="#skills" class="nav-link" data-target="skills">Skills</a>
+        <a href="#work" class="nav-link" data-target="work">Work</a>
+        <a href="#contact" class="nav-link" data-target="contact">Contact</a>
+      </nav>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" class="mobile-nav-link" data-target="home">Home</a>
+      <a href="#about" class="mobile-nav-link" data-target="about">About</a>
+      <a href="#skills" class="mobile-nav-link" data-target="skills">Skills</a>
+      <a href="#work" class="mobile-nav-link" data-target="work">Work</a>
+      <a href="#contact" class="mobile-nav-link" data-target="contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero" aria-label="Introduction">
+      <div class="hero-sticky">
+        <div class="video-intro" id="videoIntro">
+          <div class="background-layer" aria-hidden="true">
+            <img class="media" src="../images/Image-Hero.png" alt="" />
+          </div>
+          <div class="foreground-layer" id="foregroundLayer">
+            <img
+              class="media"
+              src="../images/Image-Hero.png"
+              alt="Harshat Munnangi at his desk, working late in a warmly lit home office."
+            />
+          </div>
+          <div class="vignette" aria-hidden="true"></div>
+          <div class="bottom-gradient" aria-hidden="true"></div>
+        </div>
+
+        <div class="cinematic-layer" id="cinematicLayer" aria-hidden="true"></div>
+
+        <div class="hero-content" id="heroContent">
+          <p class="tagline">Crafting Digital Experiences</p>
+          <h1 class="name">
+            <span class="name-line">Harshat</span>
+            <span class="name-line">Munnangi</span>
+          </h1>
+          <p class="subtitle">
+            Full Stack Developer — building fast, elegant, and immersive web
+            experiences from idea to interface.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          class="scroll-indicator"
+          id="scrollIndicator"
+          aria-label="Scroll to next section"
+        >
+          <span class="label">Scroll</span>
+          <span class="line"><span class="pulse"></span></span>
+        </button>
+      </div>
+    </section>
+
+    <section id="about" class="placeholder-section" aria-label="About">
+      <div class="placeholder-inner">
+        <p class="eyebrow">Next up</p>
+        <h2 class="heading">More of the story lives here.</h2>
+        <p class="body">
+          This section is a placeholder for what comes after the hero —
+          projects, experience, and everything else that belongs to the rest
+          of the page.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills" class="placeholder-section" aria-label="Skills">
+      <div class="placeholder-inner">
+        <p class="eyebrow">Capabilities</p>
+        <h2 class="heading">Skills will live here.</h2>
+        <p class="body">
+          A placeholder for the tools, languages, and frameworks that make up
+          the day-to-day toolkit.
+        </p>
+      </div>
+    </section>
+
+    <section id="work" class="placeholder-section" aria-label="Work">
+      <div class="placeholder-inner">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="heading">Projects will live here.</h2>
+        <p class="body">
+          A placeholder for case studies and shipped work worth showing off.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="placeholder-section" aria-label="Contact">
+      <div class="placeholder-inner">
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="heading">Contact will live here.</h2>
+        <p class="body">
+          A placeholder for the ways to reach out and start a conversation.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="./vendor/gsap.min.js"></script>
+  <script type="module" src="./script.js"></script>
+</body>
+</html>
