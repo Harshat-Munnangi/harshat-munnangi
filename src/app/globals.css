@@ -1,0 +1,72 @@
+:root {
+  --color-bg: #050608;
+  --color-fg: #f5f3ef;
+  --color-fg-dim: rgba(245, 243, 239, 0.72);
+  --color-fg-faint: rgba(245, 243, 239, 0.45);
+
+  --color-ember: #ff8a3d;
+  --color-ember-soft: #ffb27a;
+  --color-blue-glow: #4fc3ff;
+
+  --gradient-vignette: radial-gradient(
+    120% 90% at 50% 100%,
+    rgba(5, 6, 8, 0.95) 0%,
+    rgba(5, 6, 8, 0.55) 45%,
+    rgba(5, 6, 8, 0.15) 70%,
+    transparent 100%
+  );
+
+  --glass-bg: rgba(15, 14, 18, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: blur(16px) saturate(140%);
+
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  color: var(--color-fg);
+  background: var(--color-bg);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
