@@ -57,3 +57,21 @@
     max-width: 100%;
   }
 }
+
+/* Desktop/tablet: left column, vertically centered, next to the framed image */
+@media (min-width: 900px) {
+  .content {
+    justify-content: center;
+    max-width: 46%;
+    padding: clamp(1.5rem, 6vw, 6rem) 0 clamp(1.5rem, 6vw, 6rem)
+      clamp(1.5rem, 6vw, 6rem);
+  }
+
+  .name {
+    font-size: clamp(2.75rem, 6vw, 6rem);
+  }
+
+  .subtitle {
+    max-width: 26rem;
+  }
+}

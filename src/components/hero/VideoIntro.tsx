@@ -37,7 +37,7 @@ export default function VideoIntro({ imageSrc, imageAlt, videoSrc }: VideoIntroP
         foregroundRef.current,
         { scale: 1 },
         {
-          scale: 1.06,
+          scale: 1.035,
           duration: 18,
           ease: "sine.inOut",
           yoyo: true,
