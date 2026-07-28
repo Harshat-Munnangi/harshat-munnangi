@@ -323,13 +323,13 @@ button {
     /* Narrower box (vs. full 100vw) = less aspect-ratio mismatch with the
        source photo = cover crops less vertically = a genuine zoom-out,
        while still bleeding to the top/right/bottom viewport edges. */
-    left: 26%;
+    left: 36%;
     mask-image: linear-gradient(90deg, transparent 0%, transparent 26%, black 64%);
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, transparent 26%, black 64%);
   }
 
   .foreground-layer .media {
-    object-position: 88% 22%;
+    object-position: 97% 22%;
   }
 
   .vignette {
@@ -337,6 +337,16 @@ button {
       linear-gradient(90deg, rgba(5, 6, 8, 0.85) 0%, rgba(5, 6, 8, 0.5) 32%, rgba(5, 6, 8, 0.15) 56%, transparent 74%),
       radial-gradient(120% 70% at 50% 100%, rgba(5, 6, 8, 0.92) 0%, rgba(5, 6, 8, 0.35) 55%, transparent 78%),
       linear-gradient(180deg, rgba(5, 6, 8, 0.75) 0%, rgba(5, 6, 8, 0.1) 28%, rgba(5, 6, 8, 0.05) 55%, rgba(5, 6, 8, 0.55) 100%);
+    /* Clip the whole darkening (top/bottom/radial included) to the text
+       column so none of it washes over the image — the face should read
+       at full, undarkened brightness. */
+    mask-image: linear-gradient(90deg, black 0%, black 46%, transparent 62%);
+    -webkit-mask-image: linear-gradient(90deg, black 0%, black 46%, transparent 62%);
+  }
+
+  .bottom-gradient {
+    mask-image: linear-gradient(90deg, black 0%, black 46%, transparent 62%);
+    -webkit-mask-image: linear-gradient(90deg, black 0%, black 46%, transparent 62%);
   }
 }
 
