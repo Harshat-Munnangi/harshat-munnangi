@@ -9,7 +9,7 @@ const NEXT_SECTION_ID = "about";
 
 export default function Hero() {
   return (
-    <section className={styles.section} aria-label="Introduction">
+    <section id="home" className={styles.section} aria-label="Introduction">
       <div className={styles.sticky}>
         <VideoIntro
           imageSrc={heroImage}
