@@ -33,7 +33,7 @@ src/
     hero/                 Hero.tsx composes VideoIntro + CinematicLayer +
                            HeroContent + ScrollIndicator
     header/               Site header: logo, nav, mobile menu
-    sections/             PlaceholderSection — reused for About/Skills/Work/Contact
+    sections/             About, Skills, Work, Education, Contact — resume content
 images/
   Image-Hero.png          Original source photo (the app uses its own copy
                            under src/assets/images/)
