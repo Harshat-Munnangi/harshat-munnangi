@@ -1,0 +1,27 @@
+.section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 6rem 1.5rem;
+  scroll-margin-top: 5.5rem;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-blue-glow);
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.heading {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
