@@ -1,5 +1,24 @@
 import styles from "./Work.module.css";
 
+function formatDurationSince(start: Date): string {
+  const now = new Date();
+  let months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    (now.getMonth() - start.getMonth());
+  if (now.getDate() < start.getDate()) months -= 1;
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+  const parts = [];
+  if (years > 0) parts.push(`${years} yr${years === 1 ? "" : "s"}`);
+  if (remainingMonths > 0 || years === 0) {
+    parts.push(`${remainingMonths} mo${remainingMonths === 1 ? "" : "s"}`);
+  }
+  return parts.join(" ");
+}
+
+const ORBYT_START_DATE = new Date(2024, 3, 1);
+
 const EXPERIENCE = [
   {
     company: "Orbyt AS",
@@ -8,7 +27,7 @@ const EXPERIENCE = [
       {
         title: "Senior Developer",
         period: "April 2024 – Present",
-        duration: "2 yrs 4 mos",
+        duration: formatDurationSince(ORBYT_START_DATE),
         location: "Oslo, Norway",
         bullets: [],
       },

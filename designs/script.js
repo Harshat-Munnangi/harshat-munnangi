@@ -41,6 +41,29 @@ function initScrollIndicator() {
   });
 }
 
+/* ---------- Work: compute the current role's duration on load ---------- */
+
+function initWorkDuration() {
+  const el = document.getElementById("orbytDuration");
+  if (!el) return;
+
+  const start = new Date(2024, 3, 1);
+  const now = new Date();
+  let months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    (now.getMonth() - start.getMonth());
+  if (now.getDate() < start.getDate()) months -= 1;
+
+  const years = Math.floor(months / 12);
+  const remainingMonths = months % 12;
+  const parts = [];
+  if (years > 0) parts.push(`${years} yr${years === 1 ? "" : "s"}`);
+  if (remainingMonths > 0 || years === 0) {
+    parts.push(`${remainingMonths} mo${remainingMonths === 1 ? "" : "s"}`);
+  }
+  el.textContent = parts.join(" ");
+}
+
 /* ---------- Header: scroll-based glass, nav clicks, mobile menu ---------- */
 
 function initHeader() {
@@ -259,5 +282,6 @@ function initCinematicLayer() {
 initVideoIntro();
 initHeroContent();
 initScrollIndicator();
+initWorkDuration();
 initCinematicLayer();
 initHeader();
