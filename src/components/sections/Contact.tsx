@@ -1,27 +1,8 @@
+import { FaLinkedin } from "react-icons/fa6";
 import styles from "./Contact.module.css";
-import { EmailIcon, GitHubIcon, LinkedInIcon } from "./icons";
 import ContactForm from "./ContactForm";
 
-const CONTACT_LINKS = [
-  {
-    label: "Email",
-    value: "harshat39@gmail.com",
-    href: "mailto:harshat39@gmail.com",
-    Icon: EmailIcon,
-  },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/harshatmunnangi",
-    href: "https://www.linkedin.com/in/harshatmunnangi/",
-    Icon: LinkedInIcon,
-  },
-  {
-    label: "GitHub",
-    value: "github.com/Harshat-Munnangi",
-    href: "https://github.com/Harshat-Munnangi",
-    Icon: GitHubIcon,
-  },
-];
+const LINKEDIN_URL = "https://www.linkedin.com/in/harshatmunnangi/";
 
 export default function Contact() {
   return (
@@ -30,28 +11,21 @@ export default function Contact() {
         <p className={styles.eyebrow}>Get in touch</p>
         <h2 className={styles.heading}>Let&apos;s build something together.</h2>
         <p className={styles.body}>
-          Open to new opportunities and interesting problems — reach out
-          through any of the channels below.
+          Open to new opportunities and interesting problems — connect with
+          me on LinkedIn or send a message directly.
         </p>
-        <div className={styles.links}>
-          {CONTACT_LINKS.map(({ label, value, href, Icon }) => (
-            <a
-              key={label}
-              href={href}
-              className={styles.link}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-            >
-              <span className={styles.linkIcon}>
-                <Icon />
-              </span>
-              <span className={styles.linkText}>
-                <span className={styles.linkLabel}>{label}</span>
-                <span className={styles.linkValue}>{value}</span>
-              </span>
-            </a>
-          ))}
-        </div>
+
+        <a
+          href={LINKEDIN_URL}
+          className={styles.cta}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span className={styles.ctaIcon} aria-hidden="true">
+            <FaLinkedin />
+          </span>
+          Connect on LinkedIn
+        </a>
 
         <p className={styles.divider}>Or send a message directly</p>
         <ContactForm />
