@@ -5,6 +5,14 @@
   right: 0;
   z-index: 50;
   background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s var(--ease-cinematic),
+    border-color 0.4s var(--ease-cinematic);
+}
+
+.scrolled {
+  background: var(--color-bg);
+  border-bottom-color: var(--glass-border);
 }
 
 .inner {

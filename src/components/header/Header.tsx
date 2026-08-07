@@ -13,7 +13,28 @@ const NAV_LINKS = [
 ];
 
 export default function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const updateScrolled = () => {
+      setIsScrolled(window.scrollY > window.innerHeight * 0.75);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateScrolled);
+      }
+    };
+
+    updateScrolled();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -28,7 +49,9 @@ export default function Header() {
   };
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}
+    >
       <div className={styles.inner}>
         <button
           type="button"
