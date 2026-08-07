@@ -74,6 +74,14 @@ button {
   right: 0;
   z-index: 50;
   background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.4s var(--ease-cinematic),
+    border-color 0.4s var(--ease-cinematic);
+}
+
+.header.scrolled {
+  background: var(--color-bg);
+  border-bottom-color: var(--glass-border);
 }
 
 .header-inner {
@@ -551,6 +559,10 @@ button {
   max-width: 56rem;
 }
 
+.inner-xl {
+  max-width: 64rem;
+}
+
 .eyebrow {
   font-size: 0.78rem;
   font-weight: 600;
@@ -619,7 +631,7 @@ button {
 
 .skill-groups {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
   gap: 2.5rem;
   text-align: left;
 }
@@ -658,6 +670,77 @@ button {
   .skill-groups {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+/* Technologies: logo grid */
+
+.tech-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.tech-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tech-group .skill-group-title {
+  text-align: center;
+}
+
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 6.5rem;
+  padding: 1rem 0.5rem;
+  border-radius: 14px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.tech-item:hover {
+  border-color: rgba(255, 178, 122, 0.4);
+  transform: translateY(-2px);
+}
+
+.tech-icon {
+  display: flex;
+  font-size: 1.9rem;
+  line-height: 1;
+}
+
+.tech-label {
+  font-size: 0.72rem;
+  text-align: center;
+  color: var(--color-fg-dim);
+}
+
+@media (max-width: 640px) {
+  .tech-item {
+    width: 5.5rem;
+    padding: 0.85rem 0.4rem;
+  }
+
+  .tech-icon {
+    font-size: 1.6rem;
+  }
+
+  .tech-label {
+    font-size: 0.68rem;
   }
 }
 
@@ -760,6 +843,43 @@ button {
   color: var(--color-ember-soft);
 }
 
+/* Certifications */
+
+.cert-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  list-style: none;
+  text-align: left;
+}
+
+.cert-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4rem 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.cert-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.cert-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--color-fg);
+}
+
+.cert-date {
+  font-size: 0.82rem;
+  color: var(--color-fg-faint);
+  white-space: nowrap;
+}
+
 /* Education */
 
 .education-entry {
@@ -784,54 +904,30 @@ button {
   color: var(--color-fg-faint);
 }
 
-/* Contact: link buttons */
+/* Contact: LinkedIn CTA */
 
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.contact-link {
-  display: flex;
+.contact-cta {
+  display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.9rem 1.4rem;
+  padding: 1rem 2.2rem;
   border-radius: 999px;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  background: #0a66c2;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(10, 102, 194, 0.35);
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-link:hover {
-  background: rgba(255, 138, 61, 0.16);
-  border-color: rgba(255, 178, 122, 0.4);
+.contact-cta:hover {
+  background: #0b74d4;
   transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(10, 102, 194, 0.45);
 }
 
-.contact-link-icon {
+.contact-cta-icon {
   display: flex;
-  color: var(--color-ember-soft);
-}
-
-.contact-link-text {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.contact-link-label {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-fg-faint);
-}
-
-.contact-link-value {
-  font-size: 0.92rem;
-  color: var(--color-fg);
-  font-weight: 500;
+  font-size: 1.3rem;
 }

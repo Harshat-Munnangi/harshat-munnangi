@@ -64,13 +64,28 @@ function initWorkDuration() {
   el.textContent = parts.join(" ");
 }
 
-/* ---------- Header: scroll-based glass, nav clicks, mobile menu ---------- */
+/* ---------- Header: scroll-based solid background, nav clicks, mobile menu ---------- */
 
 function initHeader() {
+  const header = document.getElementById("header");
   const logo = document.getElementById("logo");
   const menuToggle = document.getElementById("menuToggle");
   const mobileMenu = document.getElementById("mobileMenu");
   const navLinks = document.querySelectorAll(".nav-link, .mobile-nav-link");
+
+  let ticking = false;
+  const updateScrolled = () => {
+    header.classList.toggle("scrolled", window.scrollY > window.innerHeight * 0.75);
+    ticking = false;
+  };
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateScrolled);
+    }
+  };
+  updateScrolled();
+  window.addEventListener("scroll", onScroll, { passive: true });
 
   const goTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
