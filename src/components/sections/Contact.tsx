@@ -1,5 +1,6 @@
 import styles from "./Contact.module.css";
 import { EmailIcon, GitHubIcon, LinkedInIcon } from "./icons";
+import ContactForm from "./ContactForm";
 
 const CONTACT_LINKS = [
   {
@@ -51,6 +52,9 @@ export default function Contact() {
             </a>
           ))}
         </div>
+
+        <p className={styles.divider}>Or send a message directly</p>
+        <ContactForm />
       </div>
     </section>
   );

@@ -58,6 +58,23 @@ badge all activate automatically — no other changes needed.
 - **< 900px** — full-bleed background image with bottom-aligned text overlay.
 - **≤ 760px** — header nav collapses into a hamburger menu.
 
+## Contact form
+
+The Contact section's form posts to `src/app/api/contact/route.ts`, which
+sends the message via [Resend](https://resend.com). Configure these env vars
+(e.g. in `.env.local`, not committed):
+
+- `RESEND_API_KEY` — required; without it, submissions are logged as a
+  delivery failure and the visitor sees an error instead of a silent no-op.
+- `CONTACT_TO_EMAIL` — defaults to `harshat39@gmail.com`.
+- `CONTACT_FROM_EMAIL` — defaults to Resend's shared sandbox sender
+  (`onboarding@resend.dev`); switch to an address on a domain you've verified
+  with Resend once you have one.
+
+Every submission logs the visitor's IP and email address (via `console.log`,
+captured by your hosting platform's log viewer). If the email fails to send,
+the full message is logged alongside them so nothing is lost.
+
 ## Static prototype
 
 `designs/` is a plain HTML/CSS/JS version of the same hero (no Next.js, no
