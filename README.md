@@ -75,6 +75,26 @@ Every submission logs the visitor's IP and email address (via `console.log`,
 captured by your hosting platform's log viewer). If the email fails to send,
 the full message is logged alongside them so nothing is lost.
 
+### Telegram fallback
+
+If the Resend send fails for any reason (missing/invalid API key, Resend
+outage, etc.), the route falls back to posting the message to a Telegram
+chat via a bot, so you still get notified. Configure:
+
+- `TELEGRAM_BOT_TOKEN` — create a bot by messaging
+  [@BotFather](https://t.me/BotFather) on Telegram (`/newbot`, follow the
+  prompts); it replies with the token.
+- `TELEGRAM_CHAT_ID` — the chat the bot should post to. Simplest path: message
+  your new bot directly, then visit
+  `https://api.telegram.org/bot<TOKEN>/getUpdates` in a browser and read the
+  `chat.id` field from the JSON response.
+
+If these aren't set, a failed email send is just logged as before (no
+fallback attempt). If Telegram delivery succeeds, the visitor still sees the
+normal success state — the message got through, just via a different
+channel. Only when both email and Telegram fail does the visitor see an
+error, and the full message is logged.
+
 ## Static prototype
 
 `designs/` is a plain HTML/CSS/JS version of the same hero (no Next.js, no

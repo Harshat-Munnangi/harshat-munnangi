@@ -34,6 +34,64 @@ function logDeliveryFailure(payload: ContactPayload, reason: string) {
   );
 }
 
+async function sendTelegramFallback(
+  payload: ContactPayload
+): Promise<{ ok: true } | { ok: false; reason: string }> {
+  const botToken = process.env.TELEGRAM_BOT_TOKEN;
+  const chatId = process.env.TELEGRAM_CHAT_ID;
+
+  if (!botToken || !chatId) {
+    return { ok: false, reason: "Telegram fallback is not configured" };
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: `New portfolio message (email delivery failed)\n\nFrom: ${payload.name} <${payload.email}>\nIP: ${payload.ip}\n\n${payload.message}`,
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const body = await response.text().catch(() => "");
+      return { ok: false, reason: `Telegram API responded ${response.status}: ${body}` };
+    }
+
+    return { ok: true };
+  } catch (err) {
+    return { ok: false, reason: err instanceof Error ? err.message : String(err) };
+  }
+}
+
+async function handleEmailFailure(
+  payload: ContactPayload,
+  reason: string
+): Promise<NextResponse> {
+  const fallback = await sendTelegramFallback(payload);
+
+  if (fallback.ok) {
+    console.warn(
+      JSON.stringify({
+        event: "contact_form_email_failed_telegram_sent",
+        timestamp: new Date().toISOString(),
+        reason,
+        ip: payload.ip,
+        email: payload.email,
+        name: payload.name,
+      })
+    );
+    return NextResponse.json({ ok: true });
+  }
+
+  logDeliveryFailure(payload, `email: ${reason}; telegram fallback: ${fallback.reason}`);
+  return NextResponse.json({ ok: false, error: GENERIC_ERROR }, { status: 502 });
+}
+
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
 
@@ -69,8 +127,7 @@ export async function POST(request: NextRequest) {
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    logDeliveryFailure(payload, "RESEND_API_KEY is not configured");
-    return NextResponse.json({ ok: false, error: GENERIC_ERROR }, { status: 502 });
+    return handleEmailFailure(payload, "RESEND_API_KEY is not configured");
   }
 
   try {
@@ -84,12 +141,13 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      logDeliveryFailure(payload, error.message ?? String(error));
-      return NextResponse.json({ ok: false, error: GENERIC_ERROR }, { status: 502 });
+      return handleEmailFailure(payload, error.message ?? String(error));
     }
   } catch (err) {
-    logDeliveryFailure(payload, err instanceof Error ? err.message : String(err));
-    return NextResponse.json({ ok: false, error: GENERIC_ERROR }, { status: 502 });
+    return handleEmailFailure(
+      payload,
+      err instanceof Error ? err.message : String(err)
+    );
   }
 
   return NextResponse.json({ ok: true });
