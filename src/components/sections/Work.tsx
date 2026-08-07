@@ -25,29 +25,40 @@ const EXPERIENCE = [
     duration: null,
     roles: [
       {
-        title: "Senior Developer",
+        title: "Senior Engineer",
         period: "April 2024 – Present",
         duration: formatDurationSince(ORBYT_START_DATE),
         location: "Oslo, Norway",
-        bullets: [],
+        bullets: [
+          "Collaborate end-to-end with cross-functional product teams to design, implement, test, and deliver high-quality features aligned with product goals.",
+          "Contribute to system architecture, technical design discussions, and solutioning to ensure robust, scalable, and maintainable systems.",
+          "Received 97% positive results in customer feedback surveys.",
+          "Mentor peers, conduct code reviews, and promote best practices in code quality, security, and performance.",
+        ],
+      },
+    ],
+  },
+  {
+    company: "Posten Bring AS",
+    duration: null,
+    roles: [
+      {
+        title: "Full Stack Developer",
+        period: "January 2020 – March 2024",
+        duration: "4 yrs 2 mos",
+        location: "Oslo, Norway",
+        bullets: [
+          "Developed and maintained scalable web applications for Posten's customer front interfaces.",
+          "Implemented RESTful APIs to facilitate seamless communication between frontend (Android/iOS/Web) and backend systems.",
+          "Implemented and migrated on-premises applications to the cloud, decreasing client expenditure by 50% and receiving appreciation from the customer.",
+        ],
       },
     ],
   },
   {
     company: "Tata Consultancy Services",
-    duration: "8 years",
+    duration: "3 yrs 8 mos",
     roles: [
-      {
-        title: "Information Technology Analyst",
-        period: "January 2020 – March 2024",
-        duration: "4 yrs 3 mos",
-        location: "Oslo, Norway",
-        bullets: [
-          "Understood and implemented requirements from Trello, following the Scrum model.",
-          "Built front-end and back-end service APIs and user interfaces to project specifications.",
-          "Migrated on-premises applications to the cloud, cutting customer expenditure by 50%.",
-        ],
-      },
       {
         title: "System Engineer",
         period: "April 2018 – December 2019",

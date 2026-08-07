@@ -3,15 +3,35 @@ import styles from "./Skills.module.css";
 const SKILL_GROUPS = [
   {
     title: "Core development",
-    skills: ["Java", "Kotlin", "React", "REST APIs"],
+    skills: [
+      "API design",
+      "Clean architecture",
+      "End-to-end product development",
+      "Database design & schema optimization",
+    ],
   },
   {
     title: "Practices",
-    skills: ["Scrum", "Agile delivery", "Front-end & back-end architecture"],
+    skills: [
+      "Scrum & Agile delivery",
+      "Front-end & back-end architecture",
+      "Code reviews & mentoring",
+    ],
   },
   {
     title: "Emerging tech",
     skills: ["Agentic AI development", "AI agents", "Cloud migration"],
+  },
+  {
+    title: "Soft skills",
+    skills: [
+      "Team player",
+      "Problem solving",
+      "Flexibility",
+      "Active listening",
+      "Quick learner",
+      "Communication",
+    ],
   },
 ];
 

@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
+  { id: "technologies", label: "Technologies" },
   { id: "work", label: "Work" },
   { id: "contact", label: "Contact" },
 ];

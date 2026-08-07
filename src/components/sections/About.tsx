@@ -3,7 +3,7 @@ import styles from "./About.module.css";
 const STATS = [
   { label: "Years of experience", value: "10+" },
   { label: "Based in", value: "Oslo, Norway" },
-  { label: "Currently", value: "Senior Developer @ Orbyt AS" },
+  { label: "Currently", value: "Senior Engineer @ Orbyt AS" },
 ];
 
 export default function About() {
@@ -15,11 +15,10 @@ export default function About() {
           A decade of shipping software that holds up.
         </h2>
         <p className={styles.body}>
-          Experienced software developer with over 10 years of proven success
-          crafting and implementing solutions that boost business efficiency.
-          Proficient across product development, testing, and maintenance —
-          consistently meeting stringent deadlines and delivering tangible
-          results.
+          Senior full-stack developer with 10+ years of experience building
+          scalable, cloud-native applications. Strong expertise in Java,
+          Spring Boot, and React, with a focus on API design, clean
+          architecture, and end-to-end product development.
         </p>
         <dl className={styles.stats}>
           {STATS.map((stat) => (

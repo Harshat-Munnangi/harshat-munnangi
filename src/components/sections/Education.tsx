@@ -12,7 +12,7 @@ export default function Education() {
             Engineering
           </h3>
           <p className={styles.institution}>
-            RVR &amp; JC College of Engineering
+            Acharya Nagarjuna University
           </p>
           <p className={styles.period}>2011 – 2015</p>
         </div>

@@ -30,6 +30,7 @@
 # personal documents (contain private contact info — never commit)
 /Profile.pdf
 *.resume.pdf
+/resume/
 
 # debug
 npm-debug.log*
