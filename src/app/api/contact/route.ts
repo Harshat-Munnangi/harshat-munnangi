@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getClientIp, getGeoInfo, sendTelegramMessage } from "@/lib/telegram";
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "harshat39@gmail.com";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL;
 const FROM_EMAIL =
   process.env.CONTACT_FROM_EMAIL ?? "Portfolio Contact <onboarding@resend.dev>";
 const GENERIC_ERROR =
@@ -100,6 +100,9 @@ export async function POST(request: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     return handleEmailFailure(payload, "RESEND_API_KEY is not configured");
+  }
+  if (!TO_EMAIL) {
+    return handleEmailFailure(payload, "CONTACT_TO_EMAIL is not configured");
   }
 
   try {

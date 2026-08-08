@@ -66,7 +66,8 @@ sends the message via [Resend](https://resend.com). Configure these env vars
 
 - `RESEND_API_KEY` — required; without it, submissions are logged as a
   delivery failure and the visitor sees an error instead of a silent no-op.
-- `CONTACT_TO_EMAIL` — defaults to `harshat39@gmail.com`.
+- `CONTACT_TO_EMAIL` — required; without it, submissions are logged as a
+  delivery failure the same way a missing `RESEND_API_KEY` is.
 - `CONTACT_FROM_EMAIL` — defaults to Resend's shared sandbox sender
   (`onboarding@resend.dev`); switch to an address on a domain you've verified
   with Resend once you have one.
