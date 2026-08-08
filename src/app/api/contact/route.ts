@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { getClientIp, sendTelegramMessage } from "@/lib/telegram";
+import { getClientIp, getGeoInfo, sendTelegramMessage } from "@/lib/telegram";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "harshat39@gmail.com";
 const FROM_EMAIL =
@@ -82,6 +82,9 @@ export async function POST(request: NextRequest) {
   }
 
   const ip = getClientIp(request.headers);
+  const { city, region, country } = getGeoInfo(request.headers);
+  const referer = request.headers.get("referer") ?? "Direct";
+  const userAgent = request.headers.get("user-agent") ?? "unknown";
   const payload: ContactPayload = { name, email, message, ip };
 
   console.log(
@@ -106,7 +109,7 @@ export async function POST(request: NextRequest) {
       to: TO_EMAIL,
       replyTo: email,
       subject: `New portfolio message from ${name}`,
-      text: `From: ${name} <${email}>\nIP: ${ip}\n\n${message}`,
+      text: `From: ${name} <${email}>\nIP: ${ip}\nLocation: ${city}, ${region}, ${country}\nReferrer: ${referer}\nUser-Agent: ${userAgent}\n\n${message}`,
     });
 
     if (error) {
