@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getClientIp, sendTelegramMessage } from "@/lib/telegram";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "harshat39@gmail.com";
 const FROM_EMAIL =
@@ -17,12 +18,6 @@ interface ContactPayload {
   ip: string;
 }
 
-function getClientIp(request: NextRequest): string {
-  const forwardedFor = request.headers.get("x-forwarded-for");
-  if (forwardedFor) return forwardedFor.split(",")[0].trim();
-  return request.headers.get("x-real-ip") ?? "unknown";
-}
-
 function logDeliveryFailure(payload: ContactPayload, reason: string) {
   console.error(
     JSON.stringify({
@@ -37,35 +32,9 @@ function logDeliveryFailure(payload: ContactPayload, reason: string) {
 async function sendTelegramFallback(
   payload: ContactPayload
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-
-  if (!botToken || !chatId) {
-    return { ok: false, reason: "Telegram fallback is not configured" };
-  }
-
-  try {
-    const response = await fetch(
-      `https://api.telegram.org/bot${botToken}/sendMessage`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          chat_id: chatId,
-          text: `New portfolio message (email delivery failed)\n\nFrom: ${payload.name} <${payload.email}>\nIP: ${payload.ip}\n\n${payload.message}`,
-        }),
-      }
-    );
-
-    if (!response.ok) {
-      const body = await response.text().catch(() => "");
-      return { ok: false, reason: `Telegram API responded ${response.status}: ${body}` };
-    }
-
-    return { ok: true };
-  } catch (err) {
-    return { ok: false, reason: err instanceof Error ? err.message : String(err) };
-  }
+  return sendTelegramMessage(
+    `New portfolio message (email delivery failed)\n\nFrom: ${payload.name} <${payload.email}>\nIP: ${payload.ip}\n\n${payload.message}`
+  );
 }
 
 async function handleEmailFailure(
@@ -112,7 +81,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const ip = getClientIp(request);
+  const ip = getClientIp(request.headers);
   const payload: ContactPayload = { name, email, message, ip };
 
   console.log(
