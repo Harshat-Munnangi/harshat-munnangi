@@ -15,6 +15,7 @@ export default async function Home() {
   const ip = getClientIp(headerList);
   const userAgent = headerList.get("user-agent") ?? "unknown";
   const { city, region, country } = getGeoInfo(headerList);
+  const referer = headerList.get("referer") ?? "Direct";
 
   after(async () => {
     console.log(
@@ -26,11 +27,12 @@ export default async function Home() {
         city,
         region,
         country,
+        referer,
       })
     );
 
     const result = await sendTelegramMessage(
-      `New portfolio visit\n\nIP: ${ip}\nLocation: ${city}, ${region}, ${country}\nUser-Agent: ${userAgent}`
+      `New portfolio visit\n\nIP: ${ip}\nLocation: ${city}, ${region}, ${country}\nReferrer: ${referer}\nUser-Agent: ${userAgent}`
     );
 
     if (!result.ok) {
