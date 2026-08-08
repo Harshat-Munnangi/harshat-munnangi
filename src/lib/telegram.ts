@@ -4,6 +4,21 @@ export function getClientIp(headers: Headers): string {
   return headers.get("x-real-ip") ?? "unknown";
 }
 
+export interface GeoInfo {
+  city: string;
+  region: string;
+  country: string;
+}
+
+export function getGeoInfo(headers: Headers): GeoInfo {
+  const cityRaw = headers.get("x-vercel-ip-city");
+  return {
+    city: cityRaw ? decodeURIComponent(cityRaw) : "unknown",
+    region: headers.get("x-vercel-ip-country-region") ?? "unknown",
+    country: headers.get("x-vercel-ip-country") ?? "unknown",
+  };
+}
+
 export async function sendTelegramMessage(
   text: string
 ): Promise<{ ok: true } | { ok: false; reason: string }> {

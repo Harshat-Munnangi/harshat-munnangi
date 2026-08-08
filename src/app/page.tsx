@@ -8,12 +8,13 @@ import Work from "@/components/sections/Work";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
-import { getClientIp, sendTelegramMessage } from "@/lib/telegram";
+import { getClientIp, getGeoInfo, sendTelegramMessage } from "@/lib/telegram";
 
 export default async function Home() {
   const headerList = await headers();
   const ip = getClientIp(headerList);
   const userAgent = headerList.get("user-agent") ?? "unknown";
+  const { city, region, country } = getGeoInfo(headerList);
 
   after(async () => {
     console.log(
@@ -22,11 +23,14 @@ export default async function Home() {
         timestamp: new Date().toISOString(),
         ip,
         userAgent,
+        city,
+        region,
+        country,
       })
     );
 
     const result = await sendTelegramMessage(
-      `New portfolio visit\n\nIP: ${ip}\nUser-Agent: ${userAgent}`
+      `New portfolio visit\n\nIP: ${ip}\nLocation: ${city}, ${region}, ${country}\nUser-Agent: ${userAgent}`
     );
 
     if (!result.ok) {
