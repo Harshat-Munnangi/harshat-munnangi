@@ -6,9 +6,9 @@ import styles from "./Header.module.css";
 const NAV_LINKS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "technologies", label: "Technologies" },
   { id: "work", label: "Work" },
+  { id: "technologies", label: "Technologies" },
+  { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
 

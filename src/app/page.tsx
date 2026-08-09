@@ -2,9 +2,9 @@ import { headers } from "next/headers";
 import { after } from "next/server";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/sections/About";
-import Skills from "@/components/sections/Skills";
-import Technologies from "@/components/sections/Technologies";
 import Work from "@/components/sections/Work";
+import Technologies from "@/components/sections/Technologies";
+import Skills from "@/components/sections/Skills";
 import Certifications from "@/components/sections/Certifications";
 import Education from "@/components/sections/Education";
 import Contact from "@/components/sections/Contact";
@@ -49,9 +49,9 @@ export default async function Home() {
     <main>
       <Hero />
       <About />
-      <Skills />
-      <Technologies />
       <Work />
+      <Technologies />
+      <Skills />
       <Certifications />
       <Education />
       <Contact />
